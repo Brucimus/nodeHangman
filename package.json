@@ -1,0 +1,22 @@
+{
+  "name": "nodehangman",
+  "version": "1.0.0",
+  "description": "Hangman type game played from command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brucimus/nodeHangman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brucimus/nodeHangman/issues"
+  },
+  "homepage": "https://github.com/Brucimus/nodeHangman#readme",
+  "dependencies": {
+    "inquirer": "^6.0.0"
+  }
+}
