@@ -5,15 +5,15 @@ var inquirer = require('inquirer');
 //     {
     var Letter = function(character) {
         this.character = character;
-        this.shownLetter = "";
+        this.shownLetter = "_";
         this.guessed = false;
         this.show = function() {
-            if (character === " ") {
+            if (this.character === " ") {
                 console.log(" ");
                 this.shownLetter = " ";
-            } else if (guessed) {
-                console.log(character);
-                this.shownLetter = character;
+            } else if (this.guessed) {
+                console.log(this.character);
+                this.shownLetter = this.character;
             } else {
                 console.log("_");
                 this.shownLetter = "_";
@@ -25,28 +25,27 @@ var inquirer = require('inquirer');
         this.wordArray = word.split("");
         this.objectArray = [];
         this.makeObjectArray = function() {
-            console.log(this.wordArray.length);
             for (var i = 0; i < this.wordArray.length; i++) {
-                console.log(this.wordArray[i]);
                 var tempLetter = new Letter(this.wordArray[i]);
                 this.objectArray.push(tempLetter);
             }
         };
         this.updateCheck = function(guessedLetter) {
-            for (var i = 0; i > this.objectArray.length; i++) {
-                console.log(objectArray[i]);
-                if (guessedLetter === objectArray[i].character) {
-                    objectArray[i].guessed = true;
-                    objectArray[i].show();
+            for (var i = 0; i < this.objectArray.length; i++) {
+                // console.log(this.objectArray[i]);
+                if (guessedLetter === this.objectArray[i].character) {
+                    this.objectArray[i].guessed = true;
+                    // console.log(this.objectArray[i].character)
+                    this.objectArray[i].show();
                 }
             }
         };
         this.printWord = function(){
             this.wordArray = [];
-            for (var i = 0; i > this.objectArray.length; i++) {
-                this.wordArray.push(objectArray[i].shownLetter);
+            for (var i = 0; i < this.objectArray.length; i++) {
+                this.wordArray.push(this.objectArray[i].shownLetter);
             } 
-            console.log(wordArray);
+            console.log(this.wordArray.join(" "));
         }
     }     
 //     }
@@ -54,8 +53,9 @@ var inquirer = require('inquirer');
 //     // Use user feedback for... whatever!!
 // });
 
-var happy = new Word("happy");
-console.log(happy.word);
-console.log(happy.wordArray);
+var happy = new Word("happy birthday");
 happy.makeObjectArray();
-console.log(happy.objectArray);
+happy.updateCheck("a");
+happy.printWord();
+happy.updateCheck("p");
+happy.printWord();

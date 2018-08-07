@@ -1,17 +1,19 @@
-function Letter(character) {
+var Letter = function(character) {
     this.character = character;
-    this.shownLetter = "";
+    this.shownLetter = "_";
     this.guessed = false;
     this.show = function() {
-        if (character === " ") {
+        if (this.character === " ") {
             console.log(" ");
             this.shownLetter = " ";
-        } else if (guessed) {
-            console.log(character);
-            this.shownLetter = character;
+        } else if (this.guessed) {
+            console.log(this.character);
+            this.shownLetter = this.character;
         } else {
             console.log("_");
             this.shownLetter = "_";
         }
     }
 }
+
+module.exports.Letter;

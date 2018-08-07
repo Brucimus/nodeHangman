@@ -4,30 +4,33 @@ function isGuessed(guessedArray, letter) {
     return guessedArray.indexOf(letter.toLowerCase()) > -1;
 }
 
-function Word(word) {
+var Word = function(word) {
     this.word = word;
     this.wordArray = word.split("");
     this.objectArray = [];
     this.makeObjectArray = function() {
-        for (var i = 0; i > wordArray.length; i++) {
-            console.log(wordArray[i]);
-            objectArray.push(Letter(wordArray[i]));
+        for (var i = 0; i < this.wordArray.length; i++) {
+            var tempLetter = new Letter(this.wordArray[i]);
+            this.objectArray.push(tempLetter);
         }
     };
     this.updateCheck = function(guessedLetter) {
-        for (var i = 0; i > this.objectArray.length; i++) {
-            console.log(objectArray[i]);
-            if (guessedLetter === objectArray[i].character) {
-                objectArray[i].guessed = true;
-                objectArray[i].show();
+        for (var i = 0; i < this.objectArray.length; i++) {
+            console.log(this.objectArray[i]);
+            if (guessedLetter === this.objectArray[i].character) {
+                this.objectArray[i].guessed = true;
+                this.objectArray[i].show();
             }
         }
     };
     this.printWord = function(){
         this.wordArray = [];
-        for (var i = 0; i > this.objectArray.length; i++) {
-            this.wordArray.push(objectArray[i].shownLetter);
+        for (var i = 0; i < this.objectArray.length; i++) {
+            console.log(this.objectArray[i].shownLetter);
+            this.wordArray.push(this.objectArray[i].shownLetter);
         } 
-        console.log(wordArray);
+        console.log(this.wordArray);
     }
-}
+} 
+
+module.exports.Word;
