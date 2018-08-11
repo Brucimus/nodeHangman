@@ -1,8 +1,7 @@
 // var Word = require("./Word");
 var inquirer = require('inquirer');
 var guessesLeft = 10;
-var potentialWords = [];
-
+var potentialWords = ["hoverboard","biff","marty","doc","delorean"];
 
 var Letter = function(character) {
     this.character = character;
@@ -49,27 +48,35 @@ var Word = function(word) {
         console.log(this.wordArray.join(" "));
     }
 }   
-
-
-var happy = new Word("happy birthday");
-happy.makeObjectArray();
-
-function question() {
-    
+var randomGuess;
+var pickedWord;
+function makeWordObject() {
+    randomGuess = potentialWords[Math.floor(Math.random() * potentialWords.length)];
+    pickedWord = new Word(randomGuess);
+    console.log(pickedWord.word);
+    pickedWord.makeObjectArray();
 }
-inquirer.prompt([
-    {
-        type: "input",
-        message: "What Letter do you guess?",
-        name: "letter"
-    }
-]).then(function(inquirerResponse) {
-    // Use user feedback for... whatever!!
-    console.log(inquirerResponse.letter)
-    happy.updateCheck(inquirerResponse.letter);
-    happy.printWord();
-});
 
+
+makeWordObject();
+function question() {
+    pickedWord.printWord();
+    // happy.printWord();
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What Letter do you guess?",
+            name: "letter"
+        }
+    ]).then(function(inquirerResponse) {
+        // Use user feedback for... whatever!!
+        console.log(inquirerResponse.letter)
+        pickedWord.updateCheck(inquirerResponse.letter);
+        question();
+    });
+
+}
+question();
 // var happy = new Word("happy birthday");
 // happy.makeObjectArray();
 // happy.updateCheck("a");
