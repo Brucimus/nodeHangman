@@ -8,6 +8,7 @@ var Word = function(word) {
         for (var i = 0; i < this.wordArray.length; i++) {
             var tempLetter = new Letter(this.wordArray[i]);
             this.objectArray.push(tempLetter);
+            this.objectArray[i].show();
         }
     };
     this.updateCheck = function(guessedLetter) {

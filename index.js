@@ -1,7 +1,7 @@
 var Word = require("./Word");
 var inquirer = require('inquirer');
 var guessesLeft = 10;
-var potentialWords = ["hoverboard","biff","marty","doc","delorean"];
+var potentialWords = ["hoverboard","biff","marty","doc","delorean","flux capacitor"];
 var randomGuess;
 var pickedWord;
 
@@ -38,7 +38,7 @@ function question() {
                 name: "letter"
             }
         ]).then(function(inquirerResponse) {
-            // Use user feedback for... whatever!!
+            
             if (pickedWord.word.indexOf(inquirerResponse.letter) > -1) {
                 console.log("Letter " + inquirerResponse.letter + " is in the word.")
                 pickedWord.updateCheck(inquirerResponse.letter);
