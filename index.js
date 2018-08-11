@@ -54,7 +54,9 @@ var Word = function(word) {
 var happy = new Word("happy birthday");
 happy.makeObjectArray();
 
-
+function question() {
+    
+}
 inquirer.prompt([
     {
         type: "input",
