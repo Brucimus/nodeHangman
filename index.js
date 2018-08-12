@@ -1,7 +1,7 @@
 var Word = require("./Word");
 var inquirer = require('inquirer');
 var guessesLeft = 10;
-var potentialWords = ["hoverboard","biff","marty","doc","delorean","flux capacitor"];
+var potentialWords = ["hoverboard","biff","marty mcfly","doc brown","delorean","flux capacitor"];
 var randomGuess;
 var pickedWord;
 
@@ -9,7 +9,7 @@ var pickedWord;
 function makeWordObject() {
     randomGuess = potentialWords[Math.floor(Math.random() * potentialWords.length)];
     pickedWord = new Word(randomGuess);
-    console.log(pickedWord.word);
+    // console.log(pickedWord.word);
     pickedWord.makeObjectArray();
 }
 
@@ -20,16 +20,18 @@ makeWordObject();
 function question() {
 
     //print guesses left
-    console.log("-------------------------\nNumber of guesses left: " + guessesLeft);
+    console.log("-------------------------\n\nNumber of guesses left: " + guessesLeft);
     
     //print word with guessed letters
     pickedWord.printWord();
 
-    if (pickedWord.word.indexOf("_") > -1) {
-        console.log("You've Guessed all of the Letters!");
+    //Check if word was guessed
+    if (pickedWord.displayedWord.indexOf("_") === -1) {
+        console.log("You've Guessed all of the Letters!\n\n");
         makeWordObject();
         question();
     } else {
+
         //prompt question
         inquirer.prompt([
             {
@@ -49,7 +51,7 @@ function question() {
             if (guessesLeft !== 0) {
                 question();
             } else {
-                console.log("-------------------------\nYou've run out of guesses.");
+                console.log("-------------------------\nYou've run out of guesses.\n\n");
                 guessesLeft = 10;
                 makeWordObject();
                 question();
@@ -60,9 +62,3 @@ function question() {
 
 }
 question();
-// var happy = new Word("happy birthday");
-// happy.makeObjectArray();
-// happy.updateCheck("a");
-// happy.printWord();
-// happy.updateCheck("p");
-// happy.printWord();
